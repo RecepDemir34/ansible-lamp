@@ -1,0 +1,33 @@
+   - name: install mysql-server package ubuntu
+     apt:
+      name:  mysql-server
+      state: latest
+   - name: install pymysql package ubuntu
+     pip:
+      name: pymysql
+      state: latest
+     when: ansible_distribution == "Ubuntu"
+     notify: restart_mysql
+   
+
+
+   - name: create new database
+     mysql_db:
+       name: alkacirma
+       state: present
+       collation: utf8_general_ci
+       login_user: recep
+       login_password: "{{ mysql_root_password }}"
+
+   - name: Create a database user
+ 
+     mysql_user:
+      name: alkacirma
+      password: "*AF63CFEA4EC006E3490BBFB0FB81DC0AF2921348"
+      encrypted: yes
+      priv: '*.*:ALL'
+      state: present
+      login_user: recep
+      login_password: "{{ mysql_root_password }}"
+
+

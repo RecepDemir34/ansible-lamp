@@ -1,0 +1,10 @@
+---
+
+apache_package_name: httpd
+apache_service: httpd
+php_package_name: php,php-zip,php-intl,php-mysqlnd,php-dom,php-simplexml,php-xml,php-xmlreader,php-curl,php-exif,php-ftp,php-gd,php-iconv,php-json,php-mbstring,php-posix,php-sockets,php-tokenizer
+app_user: "alkacirma"
+http_host: "alkacirma.com"
+http_conf: "alkacirma.conf"
+http_port: "80"
+disable_default: true

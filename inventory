@@ -1,0 +1,4 @@
+[db_servers]
+dns@192.168.4.18
+[web_servers]
+rocky@192.168.4.33  

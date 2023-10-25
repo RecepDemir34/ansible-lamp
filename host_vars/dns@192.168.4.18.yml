@@ -1,0 +1,7 @@
+---
+mysql_root_password: "Recep123-"
+app_user: "recep"
+http_host: "alkacirma.com"
+http_conf: "alkacirma.conf"
+http_port: "80"
+disable_default: true

@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks: 
+ 
+  - name: install  updates (Rocky)
+    tags: always
+    dnf:
+     update_only: yes
+     update_cache: yes
+    when: ansible_distribution == "Rocky"
+
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+    
+     update_cache: yes
+    when: ansible_distribution == "Ubuntu"

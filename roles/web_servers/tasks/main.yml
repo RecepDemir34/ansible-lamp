@@ -1,0 +1,42 @@
+- name: install httpd and php(rocky)
+  dnf:
+     name: 
+      -  "{{ apache_package_name }}"
+
+      - "{{  php_package_name }}" 
+      
+     state: latest
+- name: "UFW - Allow HTTP on port"
+  ansible.posix.firewalld:
+      port: 80/tcp
+    
+      permanent: yes
+      state: enabled
+
+
+- name: Create document root
+  file:
+        path: "/var/www/{{ http_host }}"
+        state: directory
+        owner: "{{ app_user }}"
+        mode: '0755'
+
+- name: Set up Apache virtualhost
+  template:
+        src: "files/httpd.conf.j2"
+        dest: "/etc/httpd/conf/{{ http_conf }}"
+  notify: Reload_httpd
+
+
+
+- name: copy default html file for site
+  tags: apache,apache2,httpd
+  copy:
+     src:  files/default_site.php
+     dest: /var/www/html/index.html
+     owner: root
+     group: root
+     mode: 0644
+
+
+
